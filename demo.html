@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+    }
+    .pagination{
+      margin: 50px;
+      padding: 20px;
+      border: 1px solid #136ed6
+    }
+    ul{
+      overflow: hidden;
+      display: inline-block;
+      padding: 0;
+    }
+    li{
+      float: left;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 15px;
+      list-style:none;
+      text-align: center;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    .disabled{
+      color: #999;
+      cursor: not-allowed; 
+    }
+    .page.active{
+      color:#fff;
+      background: #136ed6
+    }
+    div{
+      float: left;
+      overflow: hidden;
+    }
+    .text{
+      margin: 10px
+    }
+    .ellipsis{
+      display: none
+    }
+    .jump{
+      position:relative;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+    select{
+      margin:0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="pagination">
+    
+  </div>
+</body>
+<script src="./pagination.js"></script>
+<script>
+  var test = function (obj){
+    console.log(obj)
+  }
+  var page = new Pagination({id:'.pagination', pageSize: 15, total: 16, cb: test})
+</script>
+</html>
