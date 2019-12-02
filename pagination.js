@@ -158,10 +158,9 @@
             var that = this
             btn.onclick = function(){
                 var value = +input.value
-                console.log(Math.min(that.totalPage, +value))
                 that.curPage = Math.min(that.totalPage, +value)
                 that.pages()
-                that.cb(that.curPage)
+                that.cb({curpage:that.curPage, pageSize:that.pageSize})
             }
             div.appendChild(input)
             div.appendChild(btn)

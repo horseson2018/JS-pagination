@@ -61,15 +61,31 @@
   </style>
 </head>
 <body>
-  <div class="pagination">
-    
+  <div id="content">
+
   </div>
+  <div class="pagination"></div>
 </body>
 <script src="./pagination.js"></script>
 <script>
-  var test = function (obj){
-    console.log(obj)
+
+  var data = []
+  var i = 1
+  var total = 100
+  while(i < total){
+    data.push(i)
+    i++
   }
-  var page = new Pagination({id:'.pagination', pageSize: 15, total: 16, cb: test})
+  var test = function(obj) {
+    var content = document.getElementById('content')
+    content.innerHTML = ''
+    var index = obj.curpage - 1
+    var arr = data.slice(index * obj.pageSize, index * obj.pageSize + obj.pageSize)
+    arr.forEach(item => {
+      content.appendChild(document.createTextNode(item))
+      content.appendChild(document.createElement('br'))
+    })
+  }
+  var page = new Pagination({id:'.pagination', pageSize: 15, total: total, cb: test})
 </script>
 </html>
