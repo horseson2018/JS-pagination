@@ -68,24 +68,16 @@
 </body>
 <script src="./pagination.js"></script>
 <script>
-
-  var data = []
+  var virtualData = []
   var i = 1
   var total = 100
-  while(i < total){
-    data.push(i)
+  while(i < total) {
+    virtualData.push(i)
     i++
   }
   var test = function(obj) {
-    var content = document.getElementById('content')
-    content.innerHTML = ''
-    var index = obj.curpage - 1
-    var arr = data.slice(index * obj.pageSize, index * obj.pageSize + obj.pageSize)
-    arr.forEach(item => {
-      content.appendChild(document.createTextNode(item))
-      content.appendChild(document.createElement('br'))
-    })
+    console.log(obj)
   }
-  var page = new Pagination({id:'.pagination', pageSize: 15, total: total, cb: test})
+  var page = new Pagination({id:'.pagination', dataZone:'#content', pageSize: 15, total: total, cb: test, dataSource: virtualData})
 </script>
 </html>

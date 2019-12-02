@@ -3,7 +3,10 @@
     var Pagination = function(option) {
         console.log(option)
         var name = option.id
+        var zone = option.dataZone
         this.el = typeof name === "string" ? document.querySelector(name) : name
+        this.content = typeof zone === "string" ? document.querySelector(zone) : zone
+        this.dataSource = option.dataSource
         this.ul = document.createElement('ul');
         this.div = document.createElement('div')
         this.total = option.total
@@ -29,7 +32,6 @@
             this.infoText(pageSize)
             this.jumpTo()
             this.cb({curpage:this.curPage, pageSize:this.pageSize})
-            console.log(this.__proto__)
         },
         firstPage: function() {
             var li = document.createElement('li')
@@ -60,7 +62,7 @@
             this.ul.appendChild(li);
         },
         // 页数改变时重新渲染页码
-        pages: function(){
+        pages: function() {
             this.div.innerHTML = ''
             var pags = []
             var prev = document.getElementById('prev-page')
@@ -110,7 +112,9 @@
                 li.classList.add('page')
                 li.innerHTML = item
                 that.div.appendChild(li)
-            });
+            })
+            // 渲染数据
+            this.showData()
         },
         nextPage: function() {
             var li = document.createElement('li')
@@ -186,6 +190,16 @@
                 that.init(this.value)
             }
             return select
+        },
+        showData: function() {
+          var content = this.content
+          content.innerHTML = ''
+          var index = this.curPage - 1
+          var arr = this.dataSource.slice(index * this.pageSize, index * this.pageSize + this.pageSize)
+          arr.forEach(item => {
+            content.appendChild(document.createTextNode(item))
+            content.appendChild(document.createElement('br'))
+          })
         }
     };
     if (typeof module !== 'undefined' && module.exports) module.exports = Pagination;
